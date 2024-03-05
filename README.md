@@ -104,7 +104,7 @@ Let's get to the exciting part: Laravel Optane !
 
 Just for fun let's compare with NestJS
 
-### NestJS v10 on Node v21
+### NestJS v10 on BunJS v1.0.30
 
 ```
 ./dc up -d nest
@@ -116,29 +116,29 @@ Results:
 ```
 Summary:
   Elapsed       2m0s
-  Count      1477268
-    2xx      1477268
-  RPS      12310.519
-  Reads    3.440MB/s
-  Writes   0.775MB/s
+  Count      1864757
+    2xx      1864757
+  RPS      15539.615
+  Reads    3.631MB/s
+  Writes   0.978MB/s
 
-Statistics    Min      Mean     StdDev      Max   
-  Latency    348µs   40.561ms  56.594ms  7.272962s
-  RPS       8293.17  12310.47   755.58   13681.85 
+Statistics    Min       Mean    StdDev     Max   
+  Latency   1.166ms   32.144ms  4.956ms  217.34ms
+  RPS       13567.31  15539.41  657.71   16684.97
 
 Latency Percentile:
-  P50         P75       P90       P95       P99      P99.9     P99.99  
-  39.896ms  43.511ms  47.445ms  49.844ms  56.634ms  85.545ms  3.638049s
+  P50        P75       P90       P95       P99      P99.9     P99.99  
+  32.03ms  34.419ms  36.822ms  38.669ms  45.823ms  68.985ms  126.434ms
 
 Latency Histogram:
-  36.027ms  646258  43.75%
-  42.026ms  597766  40.46%
-  47.034ms  162024  10.97%
-  52.442ms   60128   4.07%
-  64.513ms    9986   0.68%
-  87.519ms    1054   0.07%
-  94.623ms      32   0.00%
-  103.88ms      20   0.00%
+  15.759ms     3176   0.17%
+  31.4ms    1546566  82.94%
+  35.186ms   278951  14.96%
+  38.877ms    28469   1.53%
+  50.337ms     6179   0.33%
+  67.137ms     1276   0.07%
+  73.381ms      128   0.01%
+  78.494ms       12   0.00%
 ```
 
 ---
