@@ -1,0 +1,18 @@
+#!/bin/bash
+trap "exit" 0
+
+if [ $# -eq 0 ]; then
+    docker compose ps -a
+    
+elif [ $1 == "up" ]; then
+    docker compose up -d
+    
+elif [ $1 == "recreate" ]; then
+    docker compose up -d --force-recreate ${*:2}
+    
+elif [ $1 == "build" ]; then
+    docker compose up -d --force-recreate --build ${*:2}
+    
+else
+    docker compose $*
+fi

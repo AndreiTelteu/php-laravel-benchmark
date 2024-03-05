@@ -1,0 +1,27 @@
+version: '3.2'
+
+services:
+  nginx-fpm-optimized:
+    build:
+      context: ./nginx-fpm-optimized
+      dockerfile: Dockerfile
+    ports:
+      - 3081:80
+    volumes:
+      - ./nginx-fpm-optimized/laravel:/var/www/html
+    environment:
+      PUID: 1000
+      PGID: 1000
+      COMPOSER_HOME: /var/www/.composer
+      PHP_DATE_TIMEZONE: "Europe/Bucharest"
+      PHP_FPM_PM_CONTROL: "static"
+      PHP_FPM_PM_MAX_CHILDREN: "100"
+      PHP_FPM_PM_MAX_REQUESTS: "1000"
+      PHP_POST_MAX_SIZE: "1024M"
+      PHP_UPLOAD_MAX_FILESIZE: "1024M"
+      AUTORUN_LARAVEL_STORAGE_LINK: false
+      SSL_MODE: off
+      LOG_CHANNEL: daily
+      APP_KEY: base64:cqHXfArPZHa338TtFlteQgsOZk2nZEBTPqaxIeAqztM=
+      APP_URL: http://localhost:3081
+  
