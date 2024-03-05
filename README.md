@@ -5,10 +5,10 @@ TODO: Rerun all tests on a real server
 ### Nginx | PHP-FPM 8.3 | Opcache precompiled and JIT
 
 ```bash
-./dc up -d nginx-fpm-optimized
-./dc exec nginx-fpm-optimized composer install --no-dev -o
-./dc exec nginx-fpm-optimized php artisan optimize
-./dc exec nginx-fpm-optimized php artisan opcache:compile --force
+./dc up -d nginx-fpm
+./dc exec nginx-fpm composer install --no-dev -o
+./dc exec nginx-fpm php artisan optimize
+./dc exec nginx-fpm php artisan opcache:compile --force
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3081/api/products
 ```
@@ -47,10 +47,10 @@ Latency Histogram:
 ### Nginx UNIT | Opcache precompiled and JIT
 
 ```bash
-./dc up -d nginx-unit-optimized
-./dc exec nginx-unit-optimized composer install --no-dev -o
-./dc exec nginx-unit-optimized php artisan optimize
-./dc exec nginx-unit-optimized php artisan opcache:compile --force
+./dc up -d nginx-unit
+./dc exec nginx-unit composer install --no-dev -o
+./dc exec nginx-unit php artisan optimize
+./dc exec nginx-unit php artisan opcache:compile --force
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3082/api/products
 ```
@@ -86,7 +86,7 @@ Latency Histogram:
 
 Sometimes it gets better results. Not concludent enough.
 
-**Tips!** In `nginx-unit-optimized/config.json`, the `applications.php.processes` can be numeric for a static worker number, or `{ "max": 100, "spare": 20, "idle_timeout": 60 }` for dynamic. Static is way better in my testing
+**Tips!** In `nginx-unit/config.json`, the `applications.php.processes` can be numeric for a static worker number, or `{ "max": 100, "spare": 20, "idle_timeout": 60 }` for dynamic. Static is way better in my testing
 
 ---
 

@@ -1,14 +1,14 @@
 version: '3.2'
 
 services:
-  nginx-fpm-optimized:
+  nginx-fpm:
     build:
-      context: ./nginx-fpm-optimized
+      context: ./nginx-fpm
       dockerfile: Dockerfile
     ports:
       - 3081:80
     volumes:
-      - ./nginx-fpm-optimized/laravel:/var/www/html
+      - ./nginx-fpm/laravel:/var/www/html
     environment:
       PUID: 1000
       PGID: 1000
@@ -25,14 +25,14 @@ services:
       APP_KEY: base64:cqHXfArPZHa338TtFlteQgsOZk2nZEBTPqaxIeAqztM=
       APP_URL: http://localhost:3081
   
-  nginx-unit-optimized:
+  nginx-unit:
     build:
-      context: ./nginx-unit-optimized
+      context: ./nginx-unit
       dockerfile: Dockerfile
     ports:
       - 3082:80
     volumes:
-      - ./nginx-unit-optimized/laravel:/var/www/html
+      - ./nginx-unit/laravel:/var/www/html
     environment:
       PUID: 1000
       PGID: 1000
