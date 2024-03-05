@@ -46,3 +46,14 @@ services:
       APP_KEY: base64:cqHXfArPZHa338TtFlteQgsOZk2nZEBTPqaxIeAqztM=
       APP_URL: http://localhost:3082
   
+  goravel:
+    build:
+      context: ./go-goravel
+      dockerfile: Dockerfile
+    ports:
+      - "3090:3000"
+    environment:
+      APP_KEY: Dv5Qkt3gOqwmstfPPlt4mKxQL7v38f0c
+      APP_HOST: 0.0.0.0
+      APP_URL: http://localhost:3090
+  

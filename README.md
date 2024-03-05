@@ -99,3 +99,44 @@ Let's get to the exciting part: Laravel Optane !
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with RoadRunner
 
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with FrankenPHP
+
+---
+
+Just for fun let's compare with GO
+
+### Goravel with Fiber webserver
+
+```
+./dc up -d goravel
+# benchmark time !!!
+plow -c 500 -d 2m http://localhost:3090/products
+```
+
+Results with GoFiber webserver config
+```
+Summary:
+  Elapsed        2m0s
+  Count       7657565
+    2xx       7657565
+  RPS       63812.983
+  Reads    16.796MB/s
+  Writes    4.017MB/s
+
+Statistics    Min       Mean    StdDev      Max   
+  Latency    134µs    7.827ms   4.501ms  310.761ms
+  RPS       45360.35  63788.38  4521.64   70813.2 
+
+Latency Percentile:
+  P50        P75      P90       P95       P99      P99.9     P99.99 
+  7.126ms  9.936ms  13.178ms  15.619ms  21.455ms  31.122ms  47.799ms
+
+Latency Histogram:
+  7.192ms   6758955  88.27%
+  11.029ms   646688   8.45%
+  15.759ms   215278   2.81%
+  20.456ms    28501   0.37%
+  25.985ms     6683   0.09%
+  33.715ms     1413   0.02%
+  38.922ms       46   0.00%
+  44.468ms        1   0.00%
+```
