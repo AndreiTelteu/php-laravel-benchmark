@@ -102,7 +102,48 @@ Let's get to the exciting part: Laravel Optane !
 
 ---
 
-Just for fun let's compare with GO
+Just for fun let's compare with NestJS
+
+### NestJS v10 on Node v21
+
+```
+./dc up -d nest
+# benchmark time !!!
+plow -c 500 -d 2m http://localhost:3080/products
+```
+
+Results:
+```
+Summary:
+  Elapsed       2m0s
+  Count      1477268
+    2xx      1477268
+  RPS      12310.519
+  Reads    3.440MB/s
+  Writes   0.775MB/s
+
+Statistics    Min      Mean     StdDev      Max   
+  Latency    348µs   40.561ms  56.594ms  7.272962s
+  RPS       8293.17  12310.47   755.58   13681.85 
+
+Latency Percentile:
+  P50         P75       P90       P95       P99      P99.9     P99.99  
+  39.896ms  43.511ms  47.445ms  49.844ms  56.634ms  85.545ms  3.638049s
+
+Latency Histogram:
+  36.027ms  646258  43.75%
+  42.026ms  597766  40.46%
+  47.034ms  162024  10.97%
+  52.442ms   60128   4.07%
+  64.513ms    9986   0.68%
+  87.519ms    1054   0.07%
+  94.623ms      32   0.00%
+  103.88ms      20   0.00%
+```
+
+---
+
+What about GO ?
 
 ### Goravel with Fiber webserver
 
@@ -112,7 +153,7 @@ Just for fun let's compare with GO
 plow -c 500 -d 2m http://localhost:3090/products
 ```
 
-Results with GoFiber webserver config
+Results:
 ```
 Summary:
   Elapsed        2m0s

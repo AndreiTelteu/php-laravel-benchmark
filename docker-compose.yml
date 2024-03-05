@@ -46,6 +46,13 @@ services:
       APP_KEY: base64:cqHXfArPZHa338TtFlteQgsOZk2nZEBTPqaxIeAqztM=
       APP_URL: http://localhost:3082
   
+  nest:
+    build:
+      context: ./js-nest
+      dockerfile: Dockerfile
+    ports:
+      - "3080:3000"
+  
   goravel:
     build:
       context: ./go-goravel
