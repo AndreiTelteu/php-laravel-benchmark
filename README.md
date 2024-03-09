@@ -132,6 +132,42 @@ Latency Histogram:
 
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with Swoole
 
+```bash
+./dc up -d swoole
+./dc exec swoole php artisan opcache:compile --force
+# benchmark time !!!
+plow -c 500 -d 2m http://localhost:3084/api/products
+```
+
+Results:
+```
+Summary:
+  Elapsed       2m0s
+  Count       692514
+    2xx       692514
+  RPS       5770.934
+  Reads    1.915MB/s
+  Writes   0.386MB/s
+
+Statistics    Min      Mean     StdDev      Max   
+  Latency   1.348ms  86.566ms  92.347ms  1.797093s
+  RPS       4052.05  5770.92    487.93    6937.56 
+
+Latency Percentile:
+  P50          P75        P90        P95        P99       P99.9     P99.99  
+  52.705ms  131.057ms  209.694ms  261.631ms  383.652ms  741.687ms  1.262264s
+
+Latency Histogram:
+  73.458ms   624024  90.11%
+  180.268ms   55231   7.98%
+  275.549ms   10678   1.54%
+  397.353ms    2045   0.30%
+  683.897ms     468   0.07%
+  968.23ms       41   0.01%
+  1.255145s      15   0.00%
+  1.567803s      12   0.00%
+```
+
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with OpenSwoole
 
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with FrankenPHP
