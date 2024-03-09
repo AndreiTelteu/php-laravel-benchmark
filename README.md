@@ -208,6 +208,42 @@ Latency Histogram:
 
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with FrankenPHP
 
+```bash
+./dc up -d franken
+./dc exec franken php artisan opcache:compile --force
+# benchmark time !!!
+plow -c 500 -d 2m http://localhost:3086/api/products
+```
+
+Results:
+```
+Summary:
+  Elapsed       2m0s
+  Count       875126
+    2xx       875126
+  RPS       7292.712
+  Reads    2.337MB/s
+  Writes   0.487MB/s
+
+Statistics    Min      Mean     StdDev      Max   
+  Latency   8.628ms  68.537ms  16.314ms  483.863ms
+  RPS       4742.75  7291.82    617.4     8442.85 
+
+Latency Percentile:
+  P50        P75       P90       P95        P99       P99.9     P99.99  
+  66.26ms  75.132ms  85.666ms  93.949ms  115.869ms  158.916ms  434.998ms
+
+Latency Histogram:
+  45.094ms    40726   4.65%
+  68.026ms   765772  87.50%
+  82.84ms     53118   6.07%
+  102.738ms   13324   1.52%
+  123.36ms     1676   0.19%
+  142.932ms     463   0.05%
+  160.225ms      45   0.01%
+  179.663ms       2   0.00%
+```
+
 ---
 
 Just for fun let's compare with NestJS
