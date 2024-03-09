@@ -92,11 +92,47 @@ Sometimes it gets better results. Not concludent enough.
 
 Let's get to the exciting part: Laravel Optane !
 
+### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with RoadRunner
+
+```bash
+./dc up -d roadrunner
+./dc exec roadrunner php artisan opcache:compile --force
+# benchmark time !!!
+plow -c 500 -d 2m http://localhost:3083/api/products
+```
+
+Results:
+```
+Summary:
+  Elapsed       2m0s
+  Count       447494
+    2xx       447494
+  RPS       3729.106
+  Reads    1.117MB/s
+  Writes   0.249MB/s
+
+Statistics    Min       Mean      StdDev      Max   
+  Latency   11.713ms  133.995ms  54.605ms  1.767253s
+  RPS        797.33    3729.71    964.94    5759.73 
+
+Latency Percentile:
+  P50           P75        P90        P95        P99      P99.9     P99.99  
+  126.566ms  153.267ms  186.211ms  212.221ms  293.345ms  755.01ms  1.289689s
+
+Latency Histogram:
+  118.68ms   319106  71.31%
+  165.945ms  118667  26.52%
+  216.95ms     8390   1.87%
+  367.861ms    1167   0.26%
+  860.727ms     144   0.03%
+  1.189624s      13   0.00%
+  1.29938s        6   0.00%
+  1.396608s       1   0.00%
+```
+
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with Swoole
 
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with OpenSwoole
-
-### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with RoadRunner
 
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with FrankenPHP
 
