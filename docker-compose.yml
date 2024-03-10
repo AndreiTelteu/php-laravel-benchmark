@@ -120,12 +120,6 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-      COMPOSER_HOME: /var/www/.composer
-      PHP_DATE_TIMEZONE: "Europe/Bucharest"
-      PHP_POST_MAX_SIZE: "1024M"
-      PHP_UPLOAD_MAX_FILESIZE: "1024M"
-      AUTORUN_LARAVEL_STORAGE_LINK: false
-      SSL_MODE: off
       LOG_CHANNEL: 'null'
       APP_KEY: base64:cqHXfArPZHa338TtFlteQgsOZk2nZEBTPqaxIeAqztM=
       APP_URL: http://localhost:3086
