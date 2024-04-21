@@ -1,11 +1,24 @@
 
 TODO: Rerun all tests on a real server
 
+## Requirements
+
+- Docker with docker compose
+- Plow benchmark tool
+  - method 1: install golang and then `go install github.com/six-ddc/plow@latest`
+  - method 2: download binary from https://github.com/six-ddc/plow/releases
+
+## Usage
+
+To build and prepare all containers:
+```bash
+./dc prepare
+```
 
 ### Nginx | PHP-FPM 8.3 | Opcache precompiled and JIT
 
 ```bash
-./dc up -d nginx-fpm
+./dc start nginx-fpm
 ./dc exec nginx-fpm composer install --no-dev -o
 ./dc exec nginx-fpm php artisan optimize
 ./dc exec nginx-fpm php artisan opcache:compile --force
@@ -47,7 +60,7 @@ Latency Histogram:
 ### Nginx UNIT | Opcache precompiled and JIT
 
 ```bash
-./dc up -d nginx-unit
+./dc start nginx-unit
 ./dc exec nginx-unit composer install --no-dev -o
 ./dc exec nginx-unit php artisan optimize
 ./dc exec nginx-unit php artisan opcache:compile --force
@@ -95,7 +108,7 @@ Let's get to the exciting part: Laravel Optane !
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with RoadRunner
 
 ```bash
-./dc up -d roadrunner
+./dc start roadrunner
 ./dc exec roadrunner php artisan opcache:compile --force
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3083/api/products
@@ -133,7 +146,7 @@ Latency Histogram:
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with Swoole
 
 ```bash
-./dc up -d swoole
+./dc start swoole
 ./dc exec swoole php artisan opcache:compile --force
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3084/api/products
@@ -171,7 +184,7 @@ Latency Histogram:
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with OpenSwoole
 
 ```bash
-./dc up -d openswoole
+./dc start openswoole
 ./dc exec openswoole php artisan opcache:compile --force
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3085/api/products
@@ -209,7 +222,7 @@ Latency Histogram:
 ### PHP 8.3 | Opcache precompiled and JIT | Laravel Optane with FrankenPHP
 
 ```bash
-./dc up -d franken
+./dc start franken
 ./dc exec franken php artisan opcache:compile --force
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3086/api/products
@@ -251,7 +264,7 @@ Just for fun let's compare with NestJS
 ### NestJS v10 on BunJS v1.0.30
 
 ```
-./dc up -d nest
+./dc start nest
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3080/products
 ```
@@ -292,7 +305,7 @@ What about GO ?
 ### Goravel with Fiber webserver
 
 ```
-./dc up -d goravel
+./dc start goravel
 # benchmark time !!!
 plow -c 500 -d 2m http://localhost:3090/products
 ```

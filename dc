@@ -7,6 +7,9 @@ if [ $# -eq 0 ]; then
 elif [ $1 == "up" ]; then
     docker compose up -d
     
+elif [ $1 == "prepare" ]; then
+    docker compose up -d ; docker compose stop
+    
 elif [ $1 == "recreate" ]; then
     docker compose up -d --force-recreate ${*:2}
     
